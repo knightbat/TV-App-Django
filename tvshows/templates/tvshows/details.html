@@ -1,0 +1,13 @@
+{% extends "tvshows/base.html" %}
+{% block content%}
+
+    <h1>{{series.name}}</h1>
+    <img src="{{series.image.medium}}">
+    <p>{{series.summary | safe}}</p>
+<ul>
+    {% for season in seasons %}
+    <li>{{season.number}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content%}

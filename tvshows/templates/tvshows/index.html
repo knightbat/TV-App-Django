@@ -1,0 +1,20 @@
+{% extends "tvshows/base.html" %}
+{% block content%}
+
+<div class="mx-auto" style="width: 200px;">
+    {% if series_list %}
+        {% for series in series_list %}
+            <div class="card" style="width: 18rem;">
+              <img src="{{series.image.medium}}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ series.name }}</h5>
+        <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                <a href="{% url 'tvshows:tvshows-details' series.id %}" class="btn btn-primary">Details</a>
+              </div>
+            </div>
+        {% endfor %}
+    {% else %}
+    <p> No series</p>
+    {% endif %}
+</div>
+{% endblock content%}
