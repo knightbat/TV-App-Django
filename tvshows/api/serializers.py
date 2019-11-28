@@ -41,5 +41,4 @@ class SeriesSerializer(serializers.ModelSerializer):
         image.medium = image_data.get('medium', image.medium)
         image.original = image_data.get('original', image.original)
         image.save()
-
         return instance
