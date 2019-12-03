@@ -6,10 +6,10 @@
         {% for series in series_list %}
         <div class="col-md-4 mt-3">
             <div class="card" style="width: 20rem;">
-                <img src="{{series.image.medium}}" class="card-img-top" alt="...">
+                <img src="{{ series.image.medium }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ series.name }}</h5>
-                    <a href="{% url 'tvshows:tvshows-details' series.id %}" class="btn btn-primary">Details</a>
+                    <a href="{% url 'tvshows:tvshows-details' series.pk %}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>

@@ -15,7 +15,11 @@ class Series(models.Model):
     officialSite = models.CharField(max_length=200)
     weight = models.IntegerField()
     summary = models.TextField()
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.OneToOneField(
+        Image,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
 
     def __str__(self):
         return self.name
@@ -30,7 +34,11 @@ class Season(models.Model):
     # network = models.CharField(max_length=200)
     webChannel = models.CharField(max_length=200, blank=True, null=True)
     summary = models.CharField(max_length=200, blank=True)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.OneToOneField(
+        Image,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     series = models.ForeignKey(Series, on_delete=models.CASCADE, blank=True, null=True, related_name='seasons')
 
     def __str__(self):
@@ -40,7 +48,6 @@ class Season(models.Model):
 
 
 class Episode(models.Model):
-    episodeURL = models.CharField(max_length=200)
     episodeName = models.CharField(max_length=200, blank=True)
     airedSeason = models.IntegerField()
     episodeNumber = models.IntegerField()
@@ -48,4 +55,13 @@ class Episode(models.Model):
     airtime = models.TimeField()
     runtime = models.CharField(max_length=200)
     summary = models.CharField(max_length=200)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, blank=True, null=True)
+    image = models.OneToOneField(
+        Image,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    series = models.ForeignKey(Series, on_delete=models.CASCADE, blank=True, null=True, related_name='episodes')
+
+    def __str__(self):
+        name = self.series.name if self.series.name else ""
+        return f'{name} - S{self.airedSeason}E{self.episodeNumber}'

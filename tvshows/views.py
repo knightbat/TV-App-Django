@@ -16,7 +16,7 @@ def details(request, id):
     context = {
         'series': series,
         'title': series.name,
-        'seasons': series.seasons.all(),
+        # 'seasons': series.seasons.all(),
     }
     return render(request, 'tvshows/details.html', context)
 
